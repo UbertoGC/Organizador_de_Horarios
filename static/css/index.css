@@ -1,0 +1,59 @@
+:root{
+    --background_grad : linear-gradient(to right, #072f4e 0%, #2898ee 100%);
+    --buttoncolor: linear-gradient(to left,  #0091ca 0%, #1abeff 100%);
+    --buttonhover : rgb(59, 58, 58);
+}
+
+body{
+    margin: 0px;
+    width: 100%;
+    height: 100vh;
+}
+
+.head{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    background: var(--background_grad);
+}
+
+.head h1 {
+    justify-content: center;
+    display: flex;
+    width: 50%;
+    color: whitesmoke;
+}
+
+.nav{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    height: 50px;
+    width: 150px;
+    text-decoration: none;
+    background: var(--buttoncolor);
+    color: whitesmoke;
+    border-style: none;
+}
+
+.btn:hover {
+    background: var(--buttonhover);
+    color: white;
+}
+
+.cont {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px
+}

@@ -54,12 +54,12 @@ def authenticate_user(username, password):
 ###################### RUTAS ########################
 
 
-@app.route('/index')
+@app.route('/')
 def index():
     return render_template('/index.html')
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
@@ -95,7 +95,7 @@ def register():
         }
         create = model.add_user(data)
         if(create):
-            return redirect('/login')
+            return redirect('/index')
         else:
             flash('Error', 'error')
 
