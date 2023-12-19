@@ -6,7 +6,7 @@ conn = mariadb.connect(
          host='127.0.0.1',
          port=3306,
          user='root',
-         password='kerito17',
+         password='',
          database='organizadorhorarios')
 
 cur = conn.cursor()
