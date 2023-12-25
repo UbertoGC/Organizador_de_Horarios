@@ -57,3 +57,72 @@ body{
     align-items: center;
     font-size: 30px
 }
+.PresentInformation{
+    display: flex;
+    justify-content: center;
+
+}
+.opciones{
+    background: linear-gradient(to right,  #ade8ff 0%, #d2f3ff 100%);
+    padding: 10px 10px;
+    margin: 10px 10px 10px 160px;
+    max-width: 200px;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    display: grid;
+    place-items: center;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+.opciones .btn{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    position: relative;
+}
+.containersixhorary{
+    background: linear-gradient(to right,  #00acee 0%, #9be3ff 100%);
+    max-width: 800px;
+    width: 100%;
+    padding: 10px 10px;
+    margin: 10px 10px 10px 10px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    position: relative;
+}
+
+.horarydata{
+    background: linear-gradient(to right, #072f4e 0%, #2898ee 100%);
+    max-width: 300px;
+    width: 100%;
+    padding: 20px 20px;
+    margin: 10px 10px 10px 10px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+.horarydata .title{
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 10px 0 10px 0;
+    position: relative;
+}
+.horarydata .description{
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 10px 0 10px 0;
+    position: relative;
+}
+.horarydata .autor{
+    color: #1abeff;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 20px 0 10px 0;
+    position: relative;
+}
