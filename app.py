@@ -7,12 +7,20 @@ import requests
 import subprocess
 import multiprocessing
 
-from models.model import TaskModel
+
 
 host = 'http://localhost:5000'
+#################### MODELOS ########################
+from controlers import ControllerHorary, ControllerLogin
 
-model = TaskModel()
+LoginController = ControllerLogin.LoginController()
+HoraryController = ControllerHorary.HoraryController()
 
+################# CONTROLADORES #####################
+
+
+
+################ CONFIGURACIONES ####################
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
 cors = CORS(app)
@@ -26,57 +34,52 @@ Session(app)
 
 # Manejador de error para el código de respuesta 403
 
-@app.errorhandler(403)
-def forbidden_error(error):
-    return render_template('home/page-403.html'), 403
+#@app.errorhandler(403)
+#def forbidden_error(error):
+#    return render_template('home/page-403.html'), 403
 
 # Manejador de error para el código de respuesta 404 Not Found
 
-@app.errorhandler(404)
-def not_found_error(error):
-    return render_template('home/page-404.html'), 404
+#@app.errorhandler(404)
+#def not_found_error(error):
+#    return render_template('home/page-404.html'), 404
 
 # Manejador de error para el código de respuesta 500 Internal Server Error
 
-@app.errorhandler(500)
-def internal_error(error):
-    return render_template('home/page-500.html'), 500
-
-##################### FUNCIONES ######################
-
-def authenticate_user(username, password):
-
-    user = model.get_user_username(username)
-    if user and user['password'] == password:
-        return user
-    return None
+#@app.errorhandler(500)
+#def internal_error(error):
+#    return render_template('home/page-500.html'), 500
 
 ###################### RUTAS ########################
 
 
 @app.route('/')
 def index():
-    return render_template('/index.html')
-
+    return render_template('index.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        result = LoginController.iniciate_session(username,password)
 
-        user = authenticate_user(username, password)
-
-        if user:
+        if result == 1:
             # Establecer los datos de sesión para el usuario
-            session['email'] = user['email']
-
-            return redirect('/index')
+            session['username'] = username
+            return redirect('/presentacion')
+        
+        elif result == 2:
+            flash('Error, usuario no encontrado', 'error')
         else:
-            flash('Error, intentelo de nuevo', 'error')
+            flash('Error, contraseña incorrecta', 'error')
 
     return render_template('login.html')
 
+@app.route('/presentacion', methods=['GET', 'POST'])
+def presentacion():
+    horary_result = HoraryController.horary_relationed(session['username'])
+    return render_template('presentacion.html', six_first_Horary = horary_result)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():

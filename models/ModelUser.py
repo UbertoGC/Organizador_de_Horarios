@@ -1,6 +1,6 @@
 from connectionPool.pool import MySQLPool
 
-class TaskModel:
+class UserModel:
     def __init__(self):        
         self.mysql_pool = MySQLPool()
 
@@ -105,4 +105,4 @@ class TaskModel:
         return data
 
 if __name__ == "__main__":    
-    tm = TaskModel()     
+    tm = UserModel()     
