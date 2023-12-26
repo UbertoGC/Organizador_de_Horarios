@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <title>ScheduleWise</title>
+</head>
+<body>
+    <header class="head">
+        <h1>BUSCAR POR FILTRADO DE HORARIO</h1>
+        <nav class="nav">
+            <a class="btn" href="/presentacion">ATRAS</a>
+        </nav>
+    </header>
+    <form method="POST" action="/buscarhorario">
+        <input name="title">
+        <input name="autor">
+        <input name="num_integrant" type="number" min="0">
+        <div class="buttonsubmit">
+            <button class="btn" type="submit"> BUSCAR </button>
+        </div>
+    </form>
+    <div>
+        {{result_horary}}
+    </div>
+    </container>
+</body>
+</html>
