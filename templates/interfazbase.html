@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <title>ScheduleWise</title>
+</head>
+<body>
+    <header class="head">
+        <h1>SCHEDULEWISE</h1>
+        <nav class="nav">
+            
+            <a class="btn" href="/logout">CERRAR SESION</a>
+        </nav>
+    </header>
+    <div class="PresentInformation">
+        <div class="containersixhorary">
+            {% for horary in six_first_Horary %}
+            <a class="horarydata" href="/horario/{{horary['id']}}" style="text-decoration:none">
+                <div class="title">{{horary['title']}}</div>
+                <div class="description">{{horary['description']}}</div>
+                <div class="autor">{{horary['autor']}}</div>
+            </a>
+            {% endfor %}
+        </div>
+        <div class="opciones">
+            <a class="btn" href="/crearhorario">CREAR</a>
+            <a class="btn" href="/buscarhorario">BUSCAR</a>
+        </div>
+    </div>
+    </container>
+</body>
+</html>

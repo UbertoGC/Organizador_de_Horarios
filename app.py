@@ -67,7 +67,7 @@ def login():
         if result == 1:
             # Establecer los datos de sesión para el usuario
             session['username'] = username
-            return redirect('/presentacion')
+            return redirect('/interfazbase')
         
         elif result == 2:
             flash('Error, usuario no encontrado', 'error')
@@ -76,10 +76,10 @@ def login():
 
     return render_template('login.html')
 
-@app.route('/presentacion', methods=['GET', 'POST'])
-def presentacion():
+@app.route('/interfazbase', methods=['GET', 'POST'])
+def interfazbase():
     horary_result = HoraryController.horary_relationed(session['username'])
-    return render_template('presentacion.html', six_first_Horary = horary_result)
+    return render_template('interfazbase.html', six_first_Horary = horary_result)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -96,9 +96,9 @@ def register():
             'email': email,
             'password': password
         }
-        create = model.add_user(data)
+        create = LoginController.add_user(data)
         if(create):
-            return redirect('/index')
+            return redirect('/')
         else:
             flash('Error', 'error')
 
@@ -111,24 +111,22 @@ def logout():
     session.pop('role', None)
 
     # Redirigir al usuario a la página de inicio
-    return render_template('index.html')
+    return render_template('presentacion.html')
 
 @app.route('/buscarhorario', methods=['GET', 'POST'])
 def buscarhorario():
     integrant = []
     title = ''
     autor = ''
-    limit = ''
     if(request.method == 'POST'):
         title = request.form['title']
         autor = request.form['autor']
-        limit = request.form['num_integrant']
-        if(limit != ''):
-            for i in range(int(limit)):
+        for i in range(3):
+            if(request.form['email'+str(i)] != ''):
                 integrant.append(request.form['email'+str(i)])
 
     horary_result = HoraryController.horary_filtrated(session['username'], title, autor, integrant)
-    return render_template('buscarhorario.html', result_horary = horary_result)
+    return render_template('buscarhorario.html', result_horary = horary_result, usuario = session['username'])
 
 if __name__ == "__main__":      
     app.run(debug=True)
