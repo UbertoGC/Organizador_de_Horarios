@@ -71,7 +71,7 @@ def login():
             # Establecer los datos de sesión para el usuario
             session['email'] = user['email']
 
-            return redirect('/index')
+            return redirect('/')
         else:
             flash('Error, intentelo de nuevo', 'error')
 
@@ -95,7 +95,7 @@ def register():
         }
         create = model.add_user(data)
         if(create):
-            return redirect('/index')
+            return redirect('/')
         else:
             flash('Error', 'error')
 
