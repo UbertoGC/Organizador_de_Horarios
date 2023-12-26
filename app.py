@@ -113,5 +113,22 @@ def logout():
     # Redirigir al usuario a la página de inicio
     return render_template('index.html')
 
+@app.route('/buscarhorario', methods=['GET', 'POST'])
+def buscarhorario():
+    integrant = []
+    title = ''
+    autor = ''
+    limit = ''
+    if(request.method == 'POST'):
+        title = request.form['title']
+        autor = request.form['autor']
+        limit = request.form['num_integrant']
+        if(limit != ''):
+            for i in range(int(limit)):
+                integrant.append(request.form['email'+str(i)])
+
+    horary_result = HoraryController.horary_filtrated(session['username'], title, autor, integrant)
+    return render_template('buscarhorario.html', result_horary = horary_result)
+
 if __name__ == "__main__":      
     app.run(debug=True)
