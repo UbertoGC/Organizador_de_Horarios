@@ -1,0 +1,128 @@
+:root{
+    --background_grad : linear-gradient(to right, #072f4e 0%, #2898ee 100%);
+    --buttoncolor: linear-gradient(to left,  #0091ca 0%, #1abeff 100%);
+    --buttonhover : rgb(59, 58, 58);
+}
+
+body{
+    margin: 0px;
+    width: 100%;
+    height: 100vh;
+}
+
+.head{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    background: var(--background_grad);
+}
+
+.head h1 {
+    justify-content: center;
+    display: flex;
+    width: 50%;
+    color: whitesmoke;
+}
+
+.nav{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    height: 50px;
+    width: 150px;
+    text-decoration: none;
+    background: var(--buttoncolor);
+    color: whitesmoke;
+    border-style: none;
+}
+
+.btn:hover {
+    background: var(--buttonhover);
+    color: white;
+}
+
+.cont {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px
+}
+.PresentInformation{
+    display: flex;
+    justify-content: center;
+
+}
+.opciones{
+    background: linear-gradient(to right,  #ade8ff 0%, #d2f3ff 100%);
+    padding: 10px 10px;
+    margin: 10px 10px 10px 160px;
+    max-width: 200px;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    display: grid;
+    place-items: center;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+.opciones .btn{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    position: relative;
+}
+.containersixhorary{
+    background: linear-gradient(to right,  #00acee 0%, #9be3ff 100%);
+    max-width: 800px;
+    width: 100%;
+    padding: 10px 10px;
+    margin: 10px 10px 10px 10px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    position: relative;
+}
+
+.horarydata{
+    background: linear-gradient(to right, #072f4e 0%, #2898ee 100%);
+    max-width: 300px;
+    width: 100%;
+    padding: 20px 20px;
+    margin: 10px 10px 10px 10px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+.horarydata .title{
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 10px 0 10px 0;
+    position: relative;
+}
+.horarydata .description{
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 10px 0 10px 0;
+    position: relative;
+}
+.horarydata .autor{
+    color: #1abeff;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 20px 0 10px 0;
+    position: relative;
+}

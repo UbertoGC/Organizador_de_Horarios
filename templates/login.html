@@ -9,24 +9,24 @@
 </head>
 <body>
     <div class="container ">
-        <form action="/">
+        <form method="POST">
             <h1 class="title">Login</h1>
             <div class="input-box underline">
-                <input placeholder="Enter Your Username" type="text" id="username">
+                <input placeholder="Enter Your Username" type="email" name="username">
                 <div class="underline"></div>
             </div>
             <div class="input-box underline">
-                <input placeholder="Enter Your Password" type="password" id="password">
+                <input placeholder="Enter Your Password" type="password" name="password">
                 <div class="underline"></div>
             </div>
             <a href="#" class="link">Forgot your password?</a>
 
-            <div class="input-box button">
-                <input type="submit" name="" value="Continue">
+            <div class="buttonsubmit">
+                <button type="submit" value="Continue"> Continue </button>
             </div>
             <!--<a class="btn" href="../templates/register.html">Sign Up</a>-->
             <div class="btn">
-                <a href="../templates/register.html"><i class="fab fa-btn" ></i>Sign Up</a>
+                <a href="/register"><i class="fab fa-btn" ></i>Sign Up</a>
             </div>
         </form>
         

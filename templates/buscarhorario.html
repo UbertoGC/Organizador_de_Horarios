@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <title>ScheduleWise</title>
+</head>
+<body>
+    <header class="head">
+        <h1>SCHEDULEWISE</h1>
+        <nav class="nav">
+            <a class="btn" href="/interfazbase">ATRAS</a>
+            <a class="btn" href="/logout">CERRAR SESION</a>
+        </nav>
+    </header>
+    <form method="POST" action="/buscarhorario">
+        <input name="title">
+        <input name="autor">
+        <input name="email0">
+        <input name="email1">
+        <input name="email2">
+        <div class="buttonsubmit">
+            <button class="btn" type="submit"> BUSCAR </button>
+        </div>
+    </form>
+    <div>
+        <table>
+            <thead>
+                <th>N°ro</th>
+                <th>Título</th>
+                <th>Descripcion</th>
+                <th>Autor</th>
+            </thead>
+            <tbody>
+                {% for i in range(result_horary|length)%}
+                <tr>
+                    <td>{{i+1}}</td>
+                    <td>{{result_horary[i]['title']}}</td>
+                    <td>{{result_horary[i]['description']}}</td>
+                    <td>{{result_horary[i]['autor']}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </container>
+</body>
+</html>
