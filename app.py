@@ -88,7 +88,7 @@ def logout():
     session.pop('role', None)
 
     # Redirigir al usuario a la página de inicio
-    return render_template('presentacion.html')
+    return render_template('index.html')
 
 @app.route('/buscarhorario', methods=['GET', 'POST'])
 def buscarhorario():
