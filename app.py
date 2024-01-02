@@ -30,29 +30,6 @@ app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SECRET_KEY'] = 'h2g3h32gh2'
 
 Session(app)
-#################### ERRORES ########################
-
-# Manejador de error para el código de respuesta 403
-
-#@app.errorhandler(403)
-#def forbidden_error(error):
-#    return render_template('home/page-403.html'), 403
-
-# Manejador de error para el código de respuesta 404 Not Found
-
-#@app.errorhandler(404)
-#def not_found_error(error):
-#    return render_template('home/page-404.html'), 404
-
-# Manejador de error para el código de respuesta 500 Internal Server Error
-
-#@app.errorhandler(500)
-#def internal_error(error):
-#    return render_template('home/page-500.html'), 500
-
-###################### RUTAS ########################
-
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -67,7 +44,7 @@ def login():
         if result == 1:
             # Establecer los datos de sesión para el usuario
             session['username'] = username
-            return redirect('/presentacion')
+            return redirect('/interfazbase')
         
         elif result == 2:
             flash('Error, usuario no encontrado', 'error')
@@ -76,10 +53,10 @@ def login():
 
     return render_template('login.html')
 
-@app.route('/presentacion', methods=['GET', 'POST'])
-def presentacion():
+@app.route('/interfazbase', methods=['GET', 'POST'])
+def interfazbase():
     horary_result = HoraryController.horary_relationed(session['username'])
-    return render_template('presentacion.html', six_first_Horary = horary_result)
+    return render_template('interfazbase.html', six_first_Horary = horary_result)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -96,7 +73,7 @@ def register():
             'email': email,
             'password': password
         }
-        create = model.add_user(data)
+        create = LoginController.add_user(data)
         if(create):
             return redirect('/')
         else:
@@ -118,17 +95,15 @@ def buscarhorario():
     integrant = []
     title = ''
     autor = ''
-    limit = ''
     if(request.method == 'POST'):
         title = request.form['title']
         autor = request.form['autor']
-        limit = request.form['num_integrant']
-        if(limit != ''):
-            for i in range(int(limit)):
+        for i in range(3):
+            if(request.form['email'+str(i)] != ''):
                 integrant.append(request.form['email'+str(i)])
 
     horary_result = HoraryController.horary_filtrated(session['username'], title, autor, integrant)
-    return render_template('buscarhorario.html', result_horary = horary_result)
+    return render_template('buscarhorario.html', result_horary = horary_result, usuario = session['username'])
 
 if __name__ == "__main__":      
     app.run(debug=True)

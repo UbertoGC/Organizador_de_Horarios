@@ -126,3 +126,42 @@ body{
     margin: 20px 0 10px 0;
     position: relative;
 }
+
+table, th, td {
+    border: 3px solid black;
+    border-collapse: collapse;
+    background-color: #1abeff;
+    justify-content: center;
+    align-items: center;
+}
+th, td {
+  padding: 20px;
+  text-align: center;
+}
+
+form {
+    background-color: linear-gradient(to right, #072f4e 0%, #2898ee 100%);
+    color: #FFFFFF;
+    padding: 20px;
+    width: 700px;
+    justify-content: center;
+}
+  
+.input-group {
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+
+}
+  
+input[type="text"], input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+}
+
+.horizontal-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

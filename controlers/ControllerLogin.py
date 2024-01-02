@@ -11,6 +11,10 @@ class LoginController:
             return 1
         else:
             return 2
+        
+    def add_user(self, data):
+        cursor = self.usermodel.add_user(data)
+        return cursor
 
 
 if __name__ == "__main__":    
