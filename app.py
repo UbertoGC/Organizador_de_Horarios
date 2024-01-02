@@ -30,29 +30,6 @@ app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SECRET_KEY'] = 'h2g3h32gh2'
 
 Session(app)
-#################### ERRORES ########################
-
-# Manejador de error para el código de respuesta 403
-
-#@app.errorhandler(403)
-#def forbidden_error(error):
-#    return render_template('home/page-403.html'), 403
-
-# Manejador de error para el código de respuesta 404 Not Found
-
-#@app.errorhandler(404)
-#def not_found_error(error):
-#    return render_template('home/page-404.html'), 404
-
-# Manejador de error para el código de respuesta 500 Internal Server Error
-
-#@app.errorhandler(500)
-#def internal_error(error):
-#    return render_template('home/page-500.html'), 500
-
-###################### RUTAS ########################
-
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -111,7 +88,7 @@ def logout():
     session.pop('role', None)
 
     # Redirigir al usuario a la página de inicio
-    return render_template('presentacion.html')
+    return render_template('index.html')
 
 @app.route('/buscarhorario', methods=['GET', 'POST'])
 def buscarhorario():
