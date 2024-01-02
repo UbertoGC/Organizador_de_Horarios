@@ -11,7 +11,7 @@ class UserModel:
         content = {}
         for result in rv:
             content = {
-                'email': result[0], 'password': result[1]}
+                'email': result[0], 'password': result[1], 'firstName': result[2], 'lastName': result[3]}
             return content
         return None
     

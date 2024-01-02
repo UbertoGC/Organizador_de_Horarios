@@ -4,16 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/css/horario.css">
     <title>ScheduleWise</title>
 </head>
 <body>
     <header class="head">
         <h1>SCHEDULEWISE</h1>
-        <h1>Bienvenido {{userData.firstName}} {{userData.lastName}}</h1>
+        <input type="date" name="dateHorary" id="dateHorary_">
         <nav class="nav">
             <a class="btn" href="/logout">CERRAR SESION</a>
         </nav>
     </header>
+    <container class="content">
+        <nav class="navmain" >
+            <div class="navfirst">
+                <a class="btn" href="/logout">CREAR HORA</a>
+                <a class="btn" href="/logout">INTEGRANTES</a>
+            </div>
+            <div class="navfinal">
+                <a class="btn" href="/logout">ANTERIOR</a>
+                <a class="btn" href="/logout">SIGUIENTEPUTA</a> 
+            </div>
+        </nav>
+    </container>
     <div class="PresentInformation">
         <div class="containersixhorary">
             {% for horary in six_first_Horary %}

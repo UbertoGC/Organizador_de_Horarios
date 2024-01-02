@@ -7,6 +7,8 @@ import requests
 import subprocess
 import multiprocessing
 
+from models.ModelUser import UserModel
+
 
 
 host = 'http://localhost:5000'
@@ -15,6 +17,8 @@ from controlers import ControllerHorary, ControllerLogin
 
 LoginController = ControllerLogin.LoginController()
 HoraryController = ControllerHorary.HoraryController()
+
+ModelUser = UserModel()
 
 ################# CONTROLADORES #####################
 
@@ -55,8 +59,11 @@ def login():
 
 @app.route('/interfazbase', methods=['GET', 'POST'])
 def interfazbase():
-    horary_result = HoraryController.horary_relationed(session['username'])
-    return render_template('interfazbase.html', six_first_Horary = horary_result)
+    username_ = session['username']
+    userData = ModelUser.get_user_username(username_)
+    print(userData)
+    horary_result = HoraryController.horary_relationed(username_)
+    return render_template('interfazbase.html', six_first_Horary = horary_result, userData = userData)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -104,6 +111,10 @@ def buscarhorario():
 
     horary_result = HoraryController.horary_filtrated(session['username'], title, autor, integrant)
     return render_template('buscarhorario.html', result_horary = horary_result, usuario = session['username'])
+
+@app.route('/horario/1', methods=['GET'])
+def horarioByID():
+    return render_template('horario.html')
 
 if __name__ == "__main__":      
     app.run(debug=True)
