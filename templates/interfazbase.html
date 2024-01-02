@@ -10,51 +10,25 @@
     <header class="head">
         <h1>SCHEDULEWISE</h1>
         <nav class="nav">
-            
+
             <a class="btn" href="/logout">CERRAR SESION</a>
         </nav>
     </header>
     <div class="PresentInformation">
         <div class="containersixhorary">
-            <form class="horizontal-form">
-                
-                <div class="input-group">
-                    <label for="title">Título</label>
-                    <input type="text" id="title" name="title" placeholder="Escribe aquí el título">
-                </div>
-                
-                
-                <div class="input-group">
-                    <label for="author">Autor</label>
-                    <input type="text" id="author" name="author" placeholder="Escribe aquí el autor">
-                  </div>
-                
-                  <div class="input-group">
-                    <label for="members">Integrantes</label>
-                    <input type="email" id="members1" name= "members1" placeholder= "Escribe aquí el correo de un integrante">
-                    <input type= "email"id= "members2"name= "members2"placeholder= "Escribe aquí el correo de un integrante"> 
-                    <input type= "email"id= "members2"name= "members3"placeholder= "Escribe aquí el correo de un integrante"> 
-                  </div>
-            </form>
+            {% for horary in six_first_Horary %}
+            <a class="horarydata" href="/horario/{{horary['id']}}" style="text-decoration:none">
+                <div class="title">{{horary['title']}}</div>
+                <div class="description">{{horary['description']}}</div>
+                <div class="autor">{{horary['autor']}}</div>
+            </a>
+            {% endfor %}
         </div>
         <div class="opciones">
             <a class="btn" href="/crearhorario">CREAR</a>
             <a class="btn" href="/buscarhorario">BUSCAR</a>
         </div>
     </div>
-    <table>
-        <tr>
-            <th>N°ro</th>
-            <th>Título</th>
-            <th>Descripción</th>
-            <th>Autor</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Titulo de ejemplo</td>
-            <td>Descripción de ejemplo</td>
-            <td>usuario1@example.com</td>
-        </tr>
-    </table>
+    </container>
 </body>
 </html>

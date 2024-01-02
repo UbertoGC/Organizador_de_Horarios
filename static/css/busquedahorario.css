@@ -1,0 +1,222 @@
+:root{
+    --background_grad : linear-gradient(to right, #072f4e 0%, #2898ee 100%);
+    --buttoncolor: linear-gradient(to left,  #0091ca 0%, #1abeff 100%);
+    --buttonhover : rgb(59, 58, 58);
+}
+
+body{
+    margin: 0px;
+    width: 100%;
+    height: 100vh;
+}
+
+.head{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    background: var(--background_grad);
+}
+
+.head h1 {
+    justify-content: center;
+    display: flex;
+    width: 50%;
+    color: whitesmoke;
+}
+
+.nav{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    height: 50px;
+    width: 150px;
+    text-decoration: none;
+    background: var(--buttoncolor);
+    color: whitesmoke;
+    border-style: none;
+}
+
+.btn:hover {
+    background: var(--buttonhover);
+    color: white;
+}
+
+.cont {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px
+}
+.PresentInformation{
+    display: flex;
+    justify-content: center;
+
+}
+.opciones{
+    background: linear-gradient(to right,  #ade8ff 0%, #d2f3ff 100%);
+    padding: 10px 10px;
+    margin: 10px 10px 10px 160px;
+    max-width: 200px;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    display: grid;
+    place-items: center;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+.opciones .btn{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    position: relative;
+}
+.containersixhorary{
+    background: linear-gradient(to right,  #00acee 0%, #9be3ff 100%);
+    max-width: 800px;
+    width: 100%;
+    padding: 10px 10px;
+    margin: 10px 10px 10px 10px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    position: relative;
+}
+
+.horarydata{
+    background: linear-gradient(to right, #072f4e 0%, #2898ee 100%);
+    max-width: 300px;
+    width: 100%;
+    padding: 20px 20px;
+    margin: 10px 10px 10px 10px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+.horarydata .title{
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 10px 0 10px 0;
+    position: relative;
+}
+.horarydata .description{
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 10px 0 10px 0;
+    position: relative;
+}
+.horarydata .autor{
+    color: #1abeff;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 20px 0 10px 0;
+    position: relative;
+}
+
+.information{
+    display: grid;
+    padding-top: 20px;
+}
+.information{
+    align-items: center;
+    justify-items: center;
+}
+.information form{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 20px;
+}
+.inputconteiner{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 20px;
+    align-items: center;
+    justify-items: center;
+}
+.inputconteiner label{
+    background-color: #0091ca;
+    text-align: center;
+    padding: 10px;
+    width: 280px;
+    font-size: x-large;
+    font-weight:200;
+}
+.inputconteiner input{
+    font-size: large;
+    height: 40px;
+    width: 276px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.inputintegrants{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+.inputintegrants input{
+    width: 396px;
+}
+.inputintegrants label{
+    width: 400px;
+}
+.buttonsconteiner .btn{
+    display: grid;
+    width: 160px;
+    font-size: x-large;
+}
+.buttonsconteiner{
+    margin: 20px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-items: center;
+}
+thead{
+    background-color: #0091ca;
+    color: black;
+}
+tbody{
+    background-color: #b4eaff;
+}
+thead tr th{
+    font-size: x-large;
+    padding: 10px;
+}
+#id{
+    width: 60px;
+}
+#description{
+    width: 450px;
+}
+#autor{
+    width: 250px;
+}
+#title{
+    width: 250px;
+}
+tbody tr td{
+    padding: 10px;
+    font-size: large;
+}
+a:link, a:visited, a:active {
+    text-decoration:none;
+}
