@@ -112,15 +112,11 @@ def buscarhorario():
     horary_result = HoraryController.horary_filtrated(session['username'], title, autor, integrant)
     return render_template('buscarhorario.html', result_horary = horary_result, usuario = session['username'])
 
-@app.route('/horario/1', methods=['GET'])
-def horarioByID():
-    return render_template('horario.html')
 
-@app.route('/horario', methods=['GET'])
-def get_hours_by_horary_id_route():
-    horary_id = request.args.get('horary_id')
-    horarios = HoraryController().get_hours_by_horary_id(horary_id)
-    return jsonify(horarios)
+@app.route('/horario/<string:id>', methods=['GET'])
+def get_hours_by_horary_id_route(id: str):
+    horarios = HoraryController.get_hours_by_horary_id_controller(id)[0]
+    return render_template('horario.html', data = horarios)
 
 if __name__ == "__main__":      
     app.run(debug=True)
