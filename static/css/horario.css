@@ -30,7 +30,7 @@ body{
 
 .container_only_horary{
     background: linear-gradient(to right,  #00acee 0%, #9be3ff 100%);
-    max-width: 800px;
+    max-width: 900px;
     width: 100%;
     padding: 10px 10px;
     margin: 10px 10px 10px 10px;

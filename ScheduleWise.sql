@@ -52,13 +52,17 @@ VALUES
 INSERT INTO Horary (title, description, userfk)
 VALUES
     ('Horario 1', 'Descripción del horario 1', 'usuario1@example.com'),
-    ('Horario 2', 'Descripción del horario 2', 'usuario2@example.com');
+    ('Horario 2', 'Descripción del horario 2', 'usuario2@example.com'),
+    ('Horario 3', 'Descripción del horario 3', 'usuario1@example.com'),
+    ('Horario 4', 'Descripción del horario 4', 'usuario1@example.com');
 
 -- Insertar datos de ejemplo en la tabla Hour
 INSERT INTO Hour (startDate, finalDate, title, description, horaryfk)
 VALUES
     ('2023-01-01 08:00:00', '2023-01-01 12:00:00', 'Clase 1', 'Descripción de la clase 1', 1),
-    ('2023-01-02 14:00:00', '2023-01-02 17:00:00', 'Clase 2', 'Descripción de la clase 2', 2);
+    ('2023-01-02 14:00:00', '2023-01-02 17:00:00', 'Clase 2', 'Descripción de la clase 2', 2),
+    ('2023-01-04 09:00:00', '2023-01-04 15:00:00', 'Clase 3', 'Descripción de la clase 3', 3),
+    ('2023-01-05 18:00:00', '2023-01-05 19:00:00', 'Clase 4', 'Descripción de la clase 4', 4);
 
 -- Insertar datos de ejemplo en la tabla Integrant
 INSERT INTO Integrant (description, userfk, horaryfk)
