@@ -122,5 +122,10 @@ def get_hours_by_horary_id_route():
     horarios = HoraryController().get_hours_by_horary_id(horary_id)
     return jsonify(horarios)
 
+@app.route('/crearhorario', methods=['GET','POST'])
+def crear_horario():
+    return render_template('crear.html')
+
+
 if __name__ == "__main__":      
     app.run(debug=True)
