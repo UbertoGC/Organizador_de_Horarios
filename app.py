@@ -116,5 +116,11 @@ def buscarhorario():
 def horarioByID():
     return render_template('horario.html')
 
+@app.route('/horario', methods=['GET'])
+def get_hours_by_horary_id_route():
+    horary_id = request.args.get('horary_id')
+    horarios = HoraryController().get_hours_by_horary_id(horary_id)
+    return jsonify(horarios)
+
 if __name__ == "__main__":      
     app.run(debug=True)

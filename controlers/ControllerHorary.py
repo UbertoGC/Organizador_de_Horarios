@@ -24,6 +24,10 @@ class HoraryController:
         if(len(array) > 0):
             horarios = self.horarymodel.get_horary_by_conditions(array,title,autor)
         return horarios
+    
+    def get_hours_by_horary_id(self, horary_id):
+        horarios = self.horarymodel.get_hours_by_horary_id(horary_id)
+        return horarios
 
 if __name__ == "__main__":    
     tm = HoraryController()    
