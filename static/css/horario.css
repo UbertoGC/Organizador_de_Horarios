@@ -1,0 +1,45 @@
+body{
+    margin: 0px;
+    width: 100%;
+}
+.content{
+    display: flex;
+    width: 100%;
+}
+
+.navmain{
+    margin: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.navfirst{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.navfinal{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.container_only_horary{
+    background: linear-gradient(to right,  #00acee 0%, #9be3ff 100%);
+    max-width: 800px;
+    width: 100%;
+    padding: 10px 10px;
+    margin: 10px 10px 10px 10px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    display: flex;
+    overflow-y: scroll;
+}
+
+.container_only_horary table{
+    background-color: whitesmoke;
+}

@@ -54,6 +54,14 @@ class HoraryModel:
                'id': result[0], 'title': result[1], 'description': result[2], 'autor': result[3]}
             array.append(content)
         return array
+    
+    def get_hours_by_horary_id(self, horary_id):
+        cursor = self.connection.cursor()
+        query = "SELECT * FROM Hora WHERE horary_fk = %s"
+        cursor.execute(query, (horary_id,))
+        horarios = cursor.fetchall()
+        cursor.close()
+        return horarios
 
 if __name__ == "__main__":    
     tm = HoraryModel()     
