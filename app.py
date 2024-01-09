@@ -97,6 +97,14 @@ def logout():
     # Redirigir al usuario a la página de inicio
     return render_template('index.html')
 
+@app.route('/crearhorario', methods=['POST'])
+def crearhorario():
+    title = request.form['title']
+    description = request.form['description']
+    HoraryController.create_horary(session['username'], title, description)
+        
+    return redirect('/buscarhorario')
+
 @app.route('/buscarhorario', methods=['GET', 'POST'])
 def buscarhorario():
     integrant = []
