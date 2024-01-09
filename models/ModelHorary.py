@@ -56,12 +56,16 @@ class HoraryModel:
         return array
     
     def get_hours_by_horary_id(self, horary_id):
-        cursor = self.connection.cursor()
-        query = "SELECT * FROM Hora WHERE horary_fk = %s"
-        cursor.execute(query, (horary_id,))
-        horarios = cursor.fetchall()
-        cursor.close()
-        return horarios
+        params = {"horary_id": horary_id}
+        query = "SELECT * FROM hour WHERE horaryfk = %(horary_id)s"
+        rv = self.mysql_pool.execute(query, params)
+        content = {}
+        array = []
+        for result in rv:
+            content = {
+               'id': result[0], 'startDate': str(result[1]).split(' ')[0], 'startTime': str(result[1]).split(' ')[1], 'finalDate': str(result[2]).split(' ')[0], 'finalTime': str(result[2]).split(' ')[1], 'title': result[3]}
+            array.append(content)
+        return array
 
 if __name__ == "__main__":    
     tm = HoraryModel()     
