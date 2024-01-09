@@ -8,7 +8,7 @@ body{
 }
 
 .navmain{
-    margin: 50px;
+    margin: 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -38,8 +38,32 @@ body{
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
     display: flex;
     overflow-y: scroll;
+    max-height: 450px;
+    flex-direction: column;
+}
+
+.container_only_horary h2{
+    display: none;
 }
 
 .container_only_horary table{
     background-color: whitesmoke;
+}
+
+.rojo {
+    background-color: red;
+    color: white;
+}
+
+/* Estilos para la tabla */
+#horarioTable {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#horarioTable th, #horarioTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
 }

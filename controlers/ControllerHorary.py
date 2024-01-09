@@ -25,7 +25,7 @@ class HoraryController:
             horarios = self.horarymodel.get_horary_by_conditions(array,title,autor)
         return horarios
     
-    def get_hours_by_horary_id(self, horary_id):
+    def get_hours_by_horary_id_controller(self, horary_id):
         horarios = self.horarymodel.get_hours_by_horary_id(horary_id)
         return horarios
 
