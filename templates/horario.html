@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/css/horario.css">
+    <title>ScheduleWise</title>
+</head>
+<body>
+    <header class="head">
+        <h1>SCHEDULEWISE</h1>
+        <input type="date" name="dateHorary" id="dateHorary_">
+        <nav class="nav">
+            <a class="btn" href="/logout">SALIR</a>
+        </nav>
+    </header>
+    <container class="content">
+        <nav class="navmain" >
+            <div class="navfirst">
+                <a class="btn" href="/logout">CREAR HORA</a>
+                <a class="btn" href="/logout">INTEGRANTES</a>
+            </div>
+            <div class="navfinal">
+                <a class="btn" href="/logout">ANTERIOR</a>
+                <a class="btn" href="/logout">SIGUIENTE</a> 
+            </div>
+        </nav>
+    </container>
+    <div class="PresentInformation">
+        <div class="container_only_horary">
+            <table>
+                <tr>
+                  <th>Día</th>
+                  <th>Lunes</th>
+                  <th>Martes</th>
+                  <th>Miércoles</th>
+                  <th>Jueves</th>
+                  <th>Viernes</th>
+                  <th>Sábado</th>
+                  <th>Domingo</th>
+                </tr>
+                <tr>
+                  <td>Horario 1</td>
+                  <td>8:00 AM</td>
+                  <td>9:30 AM</td>
+                  <td>10:45 AM</td>
+                  <td>11:15 AM</td>
+                  <td>9:00 AM</td>
+                  <td>10:30 AM</td>
+                  <td>8:45 AM</td>
+                </tr>
+                <tr>
+                  <td>Horario 2</td>
+                  <td>11:00 AM</td>
+                  <td>1:00 PM</td>
+                  <td>3:30 PM</td>
+                  <td>2:45 PM</td>
+                  <td>12:00 PM</td>
+                  <td>11:30 AM</td>
+                  <td>10:00 AM</td>
+                </tr>
+              </table>{% for horary in six_first_Horary %}
+            <a class="horarydata" href="/horario/{{horary['id']}}" style="text-decoration:none">
+                <div class="title">{{horary['title']}}</div>
+                <div class="description">{{horary['description']}}</div>
+                <div class="autor">{{horary['autor']}}</div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    </container>
+</body>
+</html>
