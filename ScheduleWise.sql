@@ -1,4 +1,5 @@
 -- Crear la base de datos
+DROP database schedulewise;
 CREATE DATABASE IF NOT EXISTS schedulewise;
 USE schedulewise;
 
@@ -33,8 +34,8 @@ CREATE TABLE IF NOT EXISTS Hour (
 -- Crear la tabla Integrant
 CREATE TABLE IF NOT EXISTS Integrant (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    description TEXT,
     userfk VARCHAR(255),
+    description TEXT,
     horaryfk INT,
     FOREIGN KEY (userfk) REFERENCES User(email),
     FOREIGN KEY (horaryfk) REFERENCES Horary(id)
@@ -49,7 +50,7 @@ VALUES
     ('usuario4@example.com', 'contraseña2', 'Lucas', 'López');
 
 -- Insertar datos de ejemplo en la tabla Horary
-INSERT INTO Horary (title, description, userfk)
+INSERT INTO Horary (id, title, description, userfk)
 VALUES
     ('Horario 1', 'Descripción del horario 1', 'usuario1@example.com'),
     ('Horario 2', 'Descripción del horario 2', 'usuario2@example.com'),
@@ -65,10 +66,15 @@ VALUES
     ('2023-01-05 18:00:00', '2023-01-05 19:00:00', 'Clase 4', 'Descripción de la clase 4', 4);
 
 -- Insertar datos de ejemplo en la tabla Integrant
-INSERT INTO Integrant (description, userfk, horaryfk)
+INSERT INTO Integrant (userfk, horaryfk, description)
 VALUES
-    ('Integrante 1', 'usuario1@example.com', '1'),
-    ('Integrante 1', 'usuario2@example.com', '2'),
-    ('Integrante 2', 'usuario1@example.com', '2'),
-    ('Integrante 2', 'usuario3@example.com', '1'),
-    ('Integrante 3', 'usuario4@example.com', '1');
+    ('usuario1@example.com', '1',''),
+    ('usuario3@example.com', '1',''),
+    ('usuario4@example.com', '1',''),
+    
+    ('usuario2@example.com', '2',''),
+    ('usuario1@example.com', '2',''),
+    
+    ('usuario1@example.com', '3',''),
+    ('usuario2@example.com', '3',''),
+    ('usuario3@example.com', '3','');
