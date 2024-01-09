@@ -4,10 +4,21 @@ class HoraryModel:
     def __init__(self):        
         self.mysql_pool = MySQLPool()
 
+    def create_horary(self, params):
+        query_1 = """INSERT INTO horary (title, description, userfk)
+            values (%(title)s, %(description)s, %(userfk)s)"""
+        query_2 = """SELECT id FROM horary WHERE userfk=%(userfk)s 
+            AND title=%(title)s AND description=%(description)s"""
+        self.mysql_pool.execute(query_1, params, commit=True)
+        rv = self.mysql_pool.execute(query_2,params)
+        for result in rv:
+            id_horary = result[0]
+            return id_horary
+
     def get_horary_created(self, email):
         params = {'userfk': email}
         rv = self.mysql_pool.execute(
-            "SELECT title, description, userfk from horary where email=%(email)s", params)
+            "SELECT title, description, userfk from horary where userfk=%(email)s", params)
         content = {}
         array = []
         for result in rv:

@@ -4,6 +4,10 @@ class IntegrantModel:
     def __init__(self):        
         self.mysql_pool = MySQLPool()
 
+    def add_integrant(self, userfk, horaryfk):
+        params = {'userfk':userfk, 'horaryfk':horaryfk}
+        self.mysql_pool.execute("INSERT INTO integrant (userfk, horaryfk) values (%(userfk)s, %(horaryfk)s)", params, commit=True)
+
     def get_horary_relacionated(self, email):
         params = {'userfk': email}
         rv = self.mysql_pool.execute(
