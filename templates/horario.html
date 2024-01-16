@@ -11,8 +11,7 @@
     <header class="head">
         <h1>SCHEDULEWISE</h1>
         <h1>{{ data.startDate }}</h1>
-        <input type="time">
-        <input type="date" name="" id="">
+
         <nav class="nav">
             <a class="btn" href="/interfazbase">SALIR</a>
         </nav>
@@ -45,9 +44,6 @@
                 <div class="hour_input_text">
                     <input placeholder="Descripcion" type="text" name="description">
                 </div>
-                <div class="hour_input_text">
-                    <input placeholder="Horario" type="text" name="horary">
-                </div>
                 <div class="hour_input_date">
                     <h2>Fecha de inicio:</h2>
                     <input type="date" name="start_date">
@@ -57,7 +53,7 @@
                     <input type="date" name="final_date">
                 </div>
                 <div class="button">
-                    <a class="btn" href="/crear_hora">Crear hora</a>
+                    <input type="submit" class="btn" value="Crear hora"></input>
                 </div>
             </form>
         </div>

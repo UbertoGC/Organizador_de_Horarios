@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, redirect, flash, session
+from flask import Flask, request, jsonify, render_template, redirect, flash, session, url_for
 from flask_session import Session
 from flask_cors import CORS, cross_origin
 
@@ -6,7 +6,6 @@ import json
 import requests
 import subprocess
 import multiprocessing
-from controlers.ControllerHour import HourController
 
 from models.ModelUser import UserModel
 
@@ -14,10 +13,11 @@ from models.ModelUser import UserModel
 
 host = 'http://localhost:5000'
 #################### MODELOS ########################
-from controlers import ControllerHorary, ControllerLogin
+from controlers import ControllerHorary, ControllerLogin, ControllerHour
 
 LoginController = ControllerLogin.LoginController()
 HoraryController = ControllerHorary.HoraryController()
+HourController = ControllerHour.HourController()
 
 ModelUser = UserModel()
 
@@ -121,23 +121,29 @@ def buscarhorario():
     return render_template('buscarhorario.html', result_horary = horary_result, usuario = session['username'])
 
 
-@app.route('/horario/<string:id>', methods=['GET'])
+@app.route('/horario/<string:id>', methods=['GET', 'POST'])
 def get_hours_by_horary_id_route(id: str):
-    horarios = HoraryController.get_hours_by_horary_id_controller(id)[0]
-    return render_template('horario.html', data = horarios)
+    
+    horarios = HoraryController.get_hours_by_horary_id_controller(id)
+    if horarios:
+        print("Hay horarios")
+    else: 
+        horarios = [{
+                'id': " ", 'startDate': "No hay fecha", 
+                'startTime': "No hay fecha", 'finalDate': "No hay fecha", 
+                'finalTime': "No hay fecha", 'title': "No hay fecha"
+                }]
+    if request.method == 'POST':
+        title = request.form['title']
+        description = request.form['description']
+        startDate = request.form['start_date']
+        finalDate = request.form['final_date']
+        response = HourController.create_hour(title, description, startDate, finalDate, id)
 
-@app.route('/crear_hora', methods=['POST'])
-def create_hour():
+        return redirect(url_for('get_hours_by_horary_id_route', id=id))
 
-    title = request.form['title']
-    description = request.form['description']
-    startDate = request.form['start_date']
-    finalDate = request.form['final_date']
-    id = request.form['horary_id']
+    return render_template('horario.html', data = horarios[0])
 
-    HourController.create_hour(title, description, startDate, finalDate, id)
-
-    return redirect('/interfazbase')
 
 if __name__ == "__main__":      
     app.run(debug=True)
