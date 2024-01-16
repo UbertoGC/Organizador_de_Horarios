@@ -30,7 +30,7 @@ body{
 
 .container_only_horary{
     background: linear-gradient(to right,  #00acee 0%, #9be3ff 100%);
-    max-width: 900px;
+    max-width: 800px;
     width: 100%;
     padding: 10px 10px;
     margin: 10px 10px 10px 10px;
@@ -40,6 +40,32 @@ body{
     overflow-y: scroll;
     max-height: 450px;
     flex-direction: column;
+}
+
+.add_hour{
+    background: linear-gradient(to right,  #00acee 0%, #9be3ff 100%);
+    max-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.hour_input_text{
+    display: flex;
+    width: 100%;
+}
+
+.hour_input_date{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.button{
+    display: flex;
+    justify-content: center;
 }
 
 .container_only_horary h2{
