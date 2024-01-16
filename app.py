@@ -61,7 +61,7 @@ def login():
 def interfazbase():
     username_ = session['username']
     userData = ModelUser.get_user_username(username_)
-    horary_result = HoraryController.horary_relationed(username_)
+    horary_result = HoraryController.horary_rel0ationed(username_)
     return render_template('interfazbase.html', six_first_Horary = horary_result, userData = userData)
 
 @app.route('/register', methods=['GET', 'POST'])
