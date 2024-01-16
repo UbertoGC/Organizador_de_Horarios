@@ -33,10 +33,10 @@ CREATE TABLE IF NOT EXISTS Hour (
 
 -- Crear la tabla Integrant
 CREATE TABLE IF NOT EXISTS Integrant (
-    id INT PRIMARY KEY AUTO_INCREMENT,
     userfk VARCHAR(255),
     description TEXT,
     horaryfk INT,
+    PRIMARY KEY (userfk, horaryfk),
     FOREIGN KEY (userfk) REFERENCES User(email),
     FOREIGN KEY (horaryfk) REFERENCES Horary(id)
 );
