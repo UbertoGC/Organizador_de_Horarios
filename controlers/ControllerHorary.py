@@ -30,6 +30,17 @@ class HoraryController:
         id_horary = self.horarymodel.create_horary(params)
         self.integrantmodel.add_integrant(email, id_horary)
 
+    def get_integrants(self, horary_id):
+        integrantes = self.horarymodel.get_integrants(horary_id)
+        return integrantes
+
+    def check_autor(self, id, username):
+        resultados = self.horarymodel.get_autor(id)
+        if( username != resultados['autor']):
+            return False
+        else:
+            return True
+
     def get_hours_by_horary_id_controller(self, horary_id):
         horarios = self.horarymodel.get_hours_by_horary_id(horary_id)
         return horarios
