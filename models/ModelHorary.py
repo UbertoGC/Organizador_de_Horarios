@@ -15,6 +15,16 @@ class HoraryModel:
             id_horary = result[0]
             return id_horary
 
+    def get_autor(self, id):
+        params = {'id': id}
+        rv = self.mysql_pool.execute(
+            "SELECT userfk from horary where id=%(id)s", params)
+        content = {}
+        for result in rv:
+            content = {
+                'autor': result[0]}
+            return content
+
     def get_horary_created(self, email):
         params = {'userfk': email}
         rv = self.mysql_pool.execute(
@@ -66,6 +76,19 @@ class HoraryModel:
             array.append(content)
         return array
     
+    def get_integrants(self, horary_id):
+        params = {"horary_id": horary_id}
+        query = "SELECT * FROM integrant WHERE horaryfk = %(horary_id)s"
+        rv = self.mysql_pool.execute(query, params)
+        content = {}
+        array = []
+        for result in rv:
+            content = {
+               'userfk': result[0], 'description': result[1], 'horaryfk': result[2] 
+            }
+            array.append(content)
+        return array
+
     def get_hours_by_horary_id(self, horary_id):
         params = {"horary_id": horary_id}
         query = "SELECT * FROM hour WHERE horaryfk = %(horary_id)s"
