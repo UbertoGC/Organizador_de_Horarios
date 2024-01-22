@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/busquedahorario.css">
+    <script src="/static/js/buscarhorario.js"></script>
+    <title>ScheduleWise</title>
+</head>
+<body>
+    <header class="head">
+        <h1>SCHEDULEWISE</h1>
+        <nav class="nav">
+            <a class="btn" href="/logout">CERRAR SESION</a>
+        </nav>
+    </header>
+    <div class="information">
+        <form method="POST" action="/horario/{{identificador}}/integrantes/invitar" id="FormularioBusqueda">
+            {% if autoria %}
+                <div class="inputconteiner">
+                    <label>Email</label>
+                    <input name="email_integrante" type="email">
+                </div>
+            {% endif %}
+            <div class="buttonsconteiner">
+                {% if autoria %}
+                    <button class="btn" type="submit">AÑADIR</button>
+                {% endif %}
+                <a class="btn" href="/horario/{{identificador}}">ATRAS</a>
+            </div>
+        </form>
+        <div id="InterfazBusqueda">
+            <table>
+                <thead>
+                    <th id="id">N°ro</th>
+                    <th id="autor">Autor</th>
+                    <th id="description">Descripcion</th>
+                </thead>
+                <tbody>
+                    {% for i in range(integrantes|length)%}
+                    <tr>
+                        <td>{{i+1}}</td>
+                        <td>{{integrantes[i]['userfk']}}</td>
+                        <td>{{integrantes[i]['description']}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

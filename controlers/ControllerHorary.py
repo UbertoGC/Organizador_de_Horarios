@@ -10,7 +10,7 @@ class HoraryController:
         array = self.integrantmodel.get_horary_relacionated(email)
         horarios = self.horarymodel.get_horary_by_id(array)
         while len(horarios) > 6:
-            horarios.remove(6)
+            horarios.remove(horarios[6])
         return horarios
 
     def horary_filtrated(self, email, title, autor, integrants):
@@ -25,6 +25,22 @@ class HoraryController:
             horarios = self.horarymodel.get_horary_by_conditions(array,title,autor)
         return horarios
     
+    def create_horary(self,email, title, description):
+        params = {'title': title, 'description': description, 'userfk': email}
+        id_horary = self.horarymodel.create_horary(params)
+        self.integrantmodel.add_integrant(email, id_horary)
+
+    def get_integrants(self, horary_id):
+        integrantes = self.horarymodel.get_integrants(horary_id)
+        return integrantes
+
+    def check_autor(self, id, username):
+        resultados = self.horarymodel.get_autor(id)
+        if( username != resultados['autor']):
+            return False
+        else:
+            return True
+
     def get_hours_by_horary_id_controller(self, horary_id):
         horarios = self.horarymodel.get_hours_by_horary_id(horary_id)
         return horarios

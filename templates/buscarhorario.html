@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/busquedahorario.css">
+    <script src="../static/js/buscarhorario.js"></script>
     <title>ScheduleWise</title>
 </head>
 <body>
@@ -14,28 +15,28 @@
         </nav>
     </header>
     <div class="information">
-        <form method="POST" action="/buscarhorario">
-                <div class="inputconteiner">
-                    <label>Título</label>
-                    <input name="title">
-                </div>
-                <div class="inputconteiner">   
-                    <label>Autor</label>
-                    <input name="autor">
-                </div>
-                <div class="inputintegrants inputconteiner">
-                    <label>Integrantes</label>
-                    <input name="email0">
-                    <input name="email1">
-                    <input name="email2">
-                </div>
-                <div class="buttonsconteiner">
-                    <a class="btn" href="/crearhorario">CREAR</a>
-                    <button class="btn" type="submit">BUSCAR</button>
-                    <a class="btn" href="/interfazbase">ATRAS</a>
-                </div>
+        <form method="POST" action="/buscarhorario" id="FormularioBusqueda">
+            <div class="inputconteiner">
+                <label>Título</label>
+                <input name="title">
+            </div>
+            <div class="inputconteiner">   
+                <label>Autor</label>
+                <input name="autor">
+            </div>
+            <div class="inputintegrants inputconteiner">
+                <label>Integrantes</label>
+                <input name="email0">
+                <input name="email1">
+                <input name="email2">
+            </div>
+            <div class="buttonsconteiner">
+                <button class="btn" type="button" onclick="IrACrear()" type="">CREAR</button>
+                <button class="btn" type="submit">BUSCAR</button>
+                <a class="btn" href="/interfazbase">ATRAS</a>
+            </div>
         </form>
-        <div>
+        <div id="InterfazBusqueda">
             <table>
                 <thead>
                     <th id="id">N°ro</th>
@@ -55,6 +56,21 @@
                 </tbody>
             </table>
         </div>
+        <form method="POST" action="/crearhorario" style="display: none;" id="InterfazCrear">
+            <div class="inputtitle inputconteiner ">
+                <label>Título</label>
+                <input name="title">
+            </div>
+            <div class="inputdescripcion inputconteiner">
+                <label>Descripción</label>
+                <textarea type="text" name="description" style="resize: none;"></textarea>
+            </div>
+            <div class="buttonsconteiner">
+                <button class="btn" type="submit">CREAR</button>
+                <button class="btn" type="button" onclick="IrABuscar()">BUSCAR</button>
+                <a class="btn" href="/interfazbase">ATRAS</a>
+            </div>
+        </form>
     </div>
 </body>
 </html>

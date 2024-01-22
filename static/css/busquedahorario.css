@@ -190,6 +190,27 @@ body{
     align-items: center;
     justify-items: center;
 }
+.inputtitle{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    align-items: center;
+    justify-items: center;
+}
+.inputdescripcion{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+.inputdescripcion label{
+    width: 400px;
+}
+.inputdescripcion textarea{
+    width: 413px;
+    height: 130px;
+}
 thead{
     background-color: #0091ca;
     color: black;
