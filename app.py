@@ -170,5 +170,10 @@ def enviarinvitacion(id):
         print(f"La invitación no fue enviado de forma correcta, tal vez el correo no exista {e}")
         return redirect('/horario/'+str(id)+'/integrantes')
 
+@app.route('/crearhorario', methods=['GET','POST'])
+def crear_horario():
+    return render_template('crear.html')
+
+
 if __name__ == "__main__":      
     app.run(debug=True)

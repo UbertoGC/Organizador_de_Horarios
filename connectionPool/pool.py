@@ -6,7 +6,7 @@ dbconfig = {
     "host":"localhost",
     "port":"3306",
     "user":"root",
-    "password":"Hardware+10",
+    "password":"kerito17",
     "database":"schedulewise",
 }
 
