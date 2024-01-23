@@ -10,9 +10,10 @@
 <body>
     <header class="head">
         <h1>SCHEDULEWISE</h1>
-        <input type="date" name="dateHorary" id="dateHorary_">
+        <h1>{{ data.startDate }}</h1>
+
         <nav class="nav">
-            <a class="btn" href="/logout">SALIR</a>
+            <a class="btn" href="/interfazbase">SALIR</a>
         </nav>
     </header>
     <container class="content">
@@ -33,6 +34,29 @@
             <table id="horarioTable" >
 
             </table>
+        </div>
+        <div class="add_hour">
+            <form method="POST">
+                <h1 class="hour_title">Agregar hora</h1>
+
+                <div class="hour_input_text">
+                    <input placeholder="Titulo" type="text" name="title">
+                </div>
+                <div class="hour_input_text">
+                    <input placeholder="Descripcion" type="text" name="description">
+                </div>
+                <div class="hour_input_date">
+                    <h2>Fecha de inicio:</h2>
+                    <input type="date" name="start_date">
+                </div>
+                <div class="hour_input_date">
+                    <h2>Fecha de finalización:</h2>
+                    <input type="date" name="final_date">
+                </div>
+                <div class="button">
+                    <input type="submit" class="btn" value="Crear hora"></input>
+                </div>
+            </form>
         </div>
     </div>
     </container>

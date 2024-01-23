@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, redirect, flash, session
+from flask import Flask, request, jsonify, render_template, redirect, flash, session, url_for
 from flask_session import Session
 from flask_mail import Mail, Message
 from flask_cors import CORS, cross_origin
@@ -14,11 +14,13 @@ from models.ModelUser import UserModel
 
 host = 'http://localhost:5000'
 #################### MODELOS ########################
-from controlers import ControllerHorary, ControllerLogin, ControllerIntegrant
+from controlers import ControllerHorary, ControllerLogin, ControllerHour, ControllerIntegrant
 
 LoginController = ControllerLogin.LoginController()
 HoraryController = ControllerHorary.HoraryController()
 IntegrantController = ControllerIntegrant.IntegrantController()
+HourController = ControllerHour.HourController()
+
 ModelUser = UserModel()
 
 ##################### CONTROLADORES #####################
@@ -72,7 +74,6 @@ def login():
 def interfazbase():
     username_ = session['username']
     userData = ModelUser.get_user_username(username_)
-    print(userData)
     horary_result = HoraryController.horary_relationed(username_)
     return render_template('interfazbase.html', six_first_Horary = horary_result, userData = userData)
 
@@ -132,10 +133,27 @@ def buscarhorario():
     return render_template('buscarhorario.html', result_horary = horary_result, usuario = session['username'])
 
 
-@app.route('/horario/<string:id>', methods=['GET'])
+@app.route('/horario/<string:id>', methods=['GET', 'POST'])
 def get_hours_by_horary_id_route(id: str):
-    horarios = HoraryController.get_hours_by_horary_id_controller(id)[0]
-    return render_template('horario.html', data = horarios, identificador = id)
+    horarios = HoraryController.get_hours_by_horary_id_controller(id)
+    if horarios:
+        print("Hay horarios")
+    else: 
+        horarios = [{
+                'id': " ", 'startDate': "No hay fecha", 
+                'startTime': "No hay fecha", 'finalDate': "No hay fecha", 
+                'finalTime': "No hay fecha", 'title': "No hay fecha"
+                }]
+    if request.method == 'POST':
+        title = request.form['title']
+        description = request.form['description']
+        startDate = request.form['start_date']
+        finalDate = request.form['final_date']
+        response = HourController.create_hour(title, description, startDate, finalDate, id)
+
+        return redirect(url_for('get_hours_by_horary_id_route', id=id))
+
+    return render_template('horario.html', data = horarios[0], identificador = id)
 
 @app.route('/horario/<string:id>/integrantes', methods=['GET'])
 def verintegrantes(id: str):

@@ -2,8 +2,9 @@ window.onload = function() {
     const dateFlask = document.getElementById('dateFlask').textContent;
     console.log(dateFlask)
     const date = new Date(dateFlask);
-    const dayIndex = date.getDay();
 
+    const dayIndex = date.getDay()-1;
+    console.log(dayIndex)
     const horarioTable = document.getElementById('horarioTable');
     const row = horarioTable.insertRow();
 
