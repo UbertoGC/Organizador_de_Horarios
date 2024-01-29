@@ -85,6 +85,7 @@ body{
     background: linear-gradient(to right,  #00acee 0%, #9be3ff 100%);
     max-width: 800px;
     width: 100%;
+    min-height: 575px;
     padding: 10px 10px;
     margin: 10px 10px 10px 10px;
     border-radius: 5px;
