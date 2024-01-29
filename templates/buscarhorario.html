@@ -48,7 +48,7 @@
                     {% for i in range(result_horary|length)%}
                     <tr>
                         <td>{{i+1}}</td>
-                        <td><a href="/horario/{{result_horary[i]['id']}}">{{result_horary[i]['title']}}</a></td>
+                        <td><a href="/horario/{{result_horary[i]['id']}}/0">{{result_horary[i]['title']}}</a></td>
                         <td>{{result_horary[i]['description']}}</td>
                         <td>{{result_horary[i]['autor']}}</td>
                     </tr>
