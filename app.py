@@ -102,11 +102,9 @@ def register():
 
 @app.route('/logout')
 def logout():
-    # Eliminar la información de sesión del usuario
     session.pop('username', None)
     session.pop('role', None)
 
-    # Redirigir al usuario a la página de inicio
     return render_template('index.html')
 
 @app.route('/crearhorario', methods=['POST'])
@@ -132,28 +130,31 @@ def buscarhorario():
     horary_result = HoraryController.horary_filtrated(session['username'], title, autor, integrant)
     return render_template('buscarhorario.html', result_horary = horary_result, usuario = session['username'])
 
+@app.route('/horario/<string:id>/buscarfecha', methods = ['POST'])
+def buscarfecha(id:str):
+    hora = request.form['search_date']
+    indice = HoraryController.get_diference_of_date(hora)
 
-@app.route('/horario/<string:id>', methods=['GET', 'POST'])
-def get_hours_by_horary_id_route(id: str):
-    horarios = HoraryController.get_hours_by_horary_id_controller(id)
-    if horarios:
-        print("Hay horarios")
-    else: 
-        horarios = [{
-                'id': " ", 'startDate': "No hay fecha", 
-                'startTime': "No hay fecha", 'finalDate': "No hay fecha", 
-                'finalTime': "No hay fecha", 'title': "No hay fecha"
-                }]
-    if request.method == 'POST':
-        title = request.form['title']
-        description = request.form['description']
-        startDate = request.form['start_date']
-        finalDate = request.form['final_date']
-        response = HourController.create_hour(title, description, startDate, finalDate, id)
+    return redirect(url_for('calendar_view',id=id,index=indice))
 
-        return redirect(url_for('get_hours_by_horary_id_route', id=id))
+@app.route('/horario/<string:id>/agregarhora', methods=['POST'])
+def agregarhora(id: str):
+    title = request.form['title']
+    description = request.form['description']
+    startdate = request.form['start_date'] + " " + request.form['start_time']
+    finaldate = request.form['final_date'] + " " + request.form['final_time']
+    mensaje, categoria = HourController.create_hour(title, description, startdate, finaldate, id)
+    flash(mensaje, categoria)
+    return redirect('/horario/'+str(id)+'/0')
 
-    return render_template('horario.html', data = horarios[0], identificador = id)
+@app.route('/horario/<string:id>/<string:index>', methods=['GET'])
+def calendar_view(id: str, index: str):
+    usando_dia = {0:0,1:0,2:0,3:0,4:0,5:0,6:0}
+    horarios, lista_dias, primer_dia, ultimo_dia = HoraryController.get_hours_by_calendar_mode(id, int(index))
+    return render_template('horario.html',start_date = primer_dia, 
+                           final_date = ultimo_dia, data = horarios,
+                           list_of_days = lista_dias,
+                           id = id, index = index, usando_dia = usando_dia)
 
 @app.route('/horario/<string:id>/integrantes', methods=['GET'])
 def verintegrantes(id: str):
@@ -167,6 +168,16 @@ def aceptarinvitacion(id):
         return redirect('/buscarhorario')
     else:
         return redirect('/login')
+
+@app.route('/horario/<string:id>/eliminar', methods=['GET'])
+def eliminarhorario(id:str):
+    HoraryController.eliminate_horary(id)
+    return redirect(url_for('interfazbase'))
+
+@app.route('/horario/<string:id>/<string:id_hour>/eliminar', methods=['GET'])
+def eliminarhora(id:str, id_hour:str):
+    HourController.eliminate_hour(id_hour)
+    return redirect(url_for('calendar_view',id=id, index='0'))
 
 @app.route('/horario/<string:id>/integrantes/invitar', methods=['POST'])
 def enviarinvitacion(id):

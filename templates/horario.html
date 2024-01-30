@@ -3,40 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/index.css">
-    <link rel="stylesheet" href="../static/css/horario.css">
+    <link rel="stylesheet" href="../../static/css/index.css">
+    <link rel="stylesheet" href="../../static/css/horario.css">
+    
     <title>ScheduleWise</title>
 </head>
 <body>
     <header class="head">
         <h1>SCHEDULEWISE</h1>
-        <h1>{{ data.startDate }}</h1>
+        <h1>Desde {{ start_date }} hasta {{ final_date }}</h1>
 
         <nav class="nav">
             <a class="btn" href="/interfazbase">SALIR</a>
+            <a class="btn eliminate-btn" href="/horario/{{id}}/eliminar">ELIMINAR HORARIO</a>
         </nav>
     </header>
+    <div style="display: none;" id="infopage" data_id="{{id}}"></div>
+    <div class="modal" id="modal1">
+        <div class="modal-conteiner">
+            <div class="tittle-conteiner">
+                <h2 id="Titulo">f</h2>
+            </div>
+            <p id="Descripcion" class="infomodal">f</p>
+            <p id="FechaInicial" class="infomodal">f</p>
+            <p id="FechaFinal" class="infomodal">f</p>
+            <div class="container-btn-modal">
+                <a class="btn btn-modal" id="btn-modal1">CERRAR</a>
+                <a href="" class="btn btn-modal" id="BotonEliminarHora">ELIMINAR</a>
+            </div>
+        </div>
+    </div>
     <container class="content">
-        <nav class="navmain" >
+        <nav class="navmain">
             <div class="navfirst">
-                <a class="btn" href="/horario">CREAR HORA</a>
-                <a class="btn" href="/horario/{{identificador}}/integrantes">INTEGRANTES</a>
+                <a class="btn" href="/horario/{{id}}/integrantes">INTEGRANTES</a>
+                <form method="POST" class="form_search" action="/horario/{{id}}/buscarfecha">
+                    <div class="hour_search">
+                        <h2>Fecha a buscar</h2>
+                        <input type="date" name="search_date">
+                    </div>
+                    <div class="button">
+                        <input type="submit" class="btn" value="IR A FECHA"></input>
+                    </div>
+                </form>
             </div>
             <div class="navfinal">
-                <a class="btn btn-anterior" href="/horario">ANTERIOR</a>
-                <a class="btn btn-siguiente" href="/horario">SIGUIENTE</a>
+                <a class="btn btn-anterior" href="/horario/{{id}}/{{index|int - 1}}">ANTERIOR</a>
+                <a class="btn btn-siguiente" href="/horario/{{id}}/{{index|int + 1}}">SIGUIENTE</a>
             </div>
         </nav>
     </container>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            <div class="flash_card {{category}}">
+                <h4>{{category}}</h4>
+                {{message}}
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <div class="PresentInformation">
         <div class="container_only_horary">
-            <h2 id="dateFlask"> "{{ data.startDate }}"; </h2>
-            <table id="horarioTable" >
-
+            <h2 id="dateFlask"> </h2>
+            <table id="horarioTable">
+                <thead>
+                    <th>Hora</th>
+                    <th>Lunes</th>
+                    <th>Martes</th>
+                    <th>Miércoles</th>
+                    <th>Jueves</th>
+                    <th>Viernes</th>
+                    <th>Sábado</th>
+                    <th>Domingo</th>
+                </thead>
+                <tbody>
+                    {%set tamanocelda = 60%}
+                    {%for i in range(24*tamanocelda)%}
+                    <tr>
+                        {% set hora = (i/tamanocelda)|int %}
+                        {% set minuto = (i % tamanocelda)|int %}
+                        {% if minuto == 0 %}
+                        <td rowspan="{{tamanocelda}}" class="hour_part">{{hora|int}}:00</td>
+                        {% endif %}
+                        {% for j in range(7)%}
+                            {% if (usando_dia[j] > 0) %}
+                                {% if usando_dia.update({j:(usando_dia[j]-1)}) %}
+                                {% endif %}
+                            {% else %}
+                                {% if (data[hora][j]|length != 0) %}
+                                    {% for k in range(data[hora][j]|length) %}
+                                        {% if (data[hora][j][k]['minuto_inicial']) == i %}
+                                            {% if usando_dia.update({j:(data[hora][j][k]['duracion_minutos'] - 1)}) %}
+                                            {% endif %}
+                                            <td class="td_full" rowspan="{{data[hora][j][k]['duracion_minutos']}}"
+                                            start_date="{{data[hora][j][k]['startDate']}}" final_date="{{data[hora][j][k]['finalDate']}}"
+                                            tittle="{{data[hora][j][k]['tittle']}}" description = "{{data[hora][j][k]['description']}}"
+                                            id_hour = "{{data[hora][j][k]['id']}}"
+                                            >
+                                                {{data[hora][j][k]['tittle']}}
+                                            </td>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if usando_dia[j] == 0 %}
+                                        <td class="td_void" day="{{list_of_days[j]}}" hour="{{hora}}" minute="{{minuto}}"></td>
+                                    {% endif %}
+                                {% else %}
+                                    <td class="td_void" day="{{list_of_days[j]}}" hour="{{hora}}" minute="{{minuto}}"></td>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
             </table>
         </div>
         <div class="add_hour">
-            <form method="POST">
+            <form method="POST" action="/horario/{{id}}/agregarhora">
                 <h1 class="hour_title">Agregar hora</h1>
 
                 <div class="hour_input_text">
@@ -47,11 +130,19 @@
                 </div>
                 <div class="hour_input_date">
                     <h2>Fecha de inicio:</h2>
-                    <input type="date" name="start_date">
+                    <input type="date" name="start_date" id="start_date">
                 </div>
                 <div class="hour_input_date">
                     <h2>Fecha de finalización:</h2>
                     <input type="date" name="final_date">
+                </div>
+                <div class="hour_input_date">
+                    <h2>Hora de inicio:</h2>
+                    <input type="time" name="start_time" id="start_time">
+                </div>
+                <div class="hour_input_date">
+                    <h2>Hora de finalización:</h2>
+                    <input type="time" name="final_time">
                 </div>
                 <div class="button">
                     <input type="submit" class="btn" value="Crear hora"></input>
@@ -60,7 +151,6 @@
         </div>
     </div>
     </container>
-
-<script src="../static/js/horary.js"></script>
+    <script src="../../static/js/horary.js"></script>
 </body>
 </html>
